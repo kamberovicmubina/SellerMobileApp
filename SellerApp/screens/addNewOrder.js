@@ -14,7 +14,7 @@ export default function AddNewOrder ({ navigation }) {
                 <View style={{flex: 1}}>
                 <TouchableOpacity
                     style={styles.saveBtn}
-                    onPress={ () => {                    
+                    onPress={ () => {                  
                         saveNewOrder(navigation.state.params.data.newOrder); // spašava u AsyncStorage
                         navigation.navigate('DisplayProducts');
                     }}

@@ -68,7 +68,7 @@ export default function DisplayOrders( { navigation } ) {
             )
           }
           )}
-        </ScrollView>
+        </ScrollView>       
       </ImageBackground>   
   )             
 }

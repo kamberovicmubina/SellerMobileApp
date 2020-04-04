@@ -86,7 +86,7 @@ export default function Login ({navigation}) {
                     onPress={checkLogin}
                     underlayColor='#fff'>
                     <Text style={loginText}>Submit</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>     
             </ImageBackground>
         </TouchableWithoutFeedback>
     )

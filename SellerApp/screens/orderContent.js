@@ -3,7 +3,7 @@ import { View, Text, ScrollView, Image, ImageBackground, TouchableOpacity } from
 import { WingBlank, WhiteSpace, Button } from '@ant-design/react-native';
 import styles from '../styles/productStyles';
 import { Card } from 'react-native-paper';
-import { saveNewOrder } from '../functions/storage';
+import { deleteOrder } from '../functions/storage';
 import { MaterialIcons } from '@expo/vector-icons';
 
 
@@ -63,6 +63,18 @@ export default function OrderContent ({navigation}) {
           }
           )}
         </ScrollView>
+        <View>
+            <TouchableOpacity
+                  style={styles.deleteBtn}
+                  onPress={ () => {          
+                    deleteOrder(navigation.state.params.data.item);             
+                    navigation.navigate('DisplayOrders');
+                  }}
+                  underlayColor='#fff'>
+                  <Text style={styles.sumbitText}>Delete order</Text>
+            </TouchableOpacity>
+        </View>
+
       </ImageBackground>
     );
 }

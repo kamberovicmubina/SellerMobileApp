@@ -124,6 +124,17 @@ export default StyleSheet.create({
         height: 70,
         justifyContent: 'center',
       },
+      deleteBtn: {
+        paddingTop:18,
+        paddingBottom:18,
+        backgroundColor:'#237804',
+        borderRadius:10,
+        borderWidth: 1,
+        height: 60,
+        justifyContent: 'center',
+        marginBottom: 10,
+      },
+
       showPrice: {
         marginRight:10,
         marginLeft:10,
