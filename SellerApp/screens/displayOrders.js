@@ -49,7 +49,7 @@ export default function DisplayOrders( { navigation } ) {
                     title={setText(item.tableNr)}
                     left={(props) => {
                       return <Image {...props} 
-                        style={[{width: 35, height: 35}, !item.Served ? {opacity: 0.2} : '1']}
+                        style={[{width: 35, height: 35}, !item.served ? {opacity: 0.2} : '1']}
                         source={{uri: 'https://cdn4.iconfinder.com/data/icons/categories-5/28/34_serve_tray_service_hot_dinner_restaurant_hotel-512.png',}}/> 
                     }}
                     right={(props) => (    
@@ -68,7 +68,7 @@ export default function DisplayOrders( { navigation } ) {
             )
           }
           )}
-        </ScrollView>       
+        </ScrollView>
       </ImageBackground>   
   )             
 }

@@ -8,7 +8,8 @@ import {AsyncStorage} from 'react-native';
 import Filter from '../components/filter';
 import styles from '../styles/productStyles';
 import { getStyle, getTitleStyle, getSubtitleStyle, getTextStyle, isProductQuantitySmall } from '../functions/productStyleFunc';
-import { checkIfOrdersEmpty, createOrders } from '../functions/storage';
+import { checkIfOrdersEmpty } from '../functions/storage';
+
 
 export default function DisplayProducts( { navigation } ) {
   const [products, setProducts] = useState([]);
@@ -67,7 +68,6 @@ export default function DisplayProducts( { navigation } ) {
 
   useEffect( () => {
     checkIfOrdersEmpty();
-    //createOrders();
   }, []);
 
   useEffect(() => {
@@ -182,9 +182,11 @@ export default function DisplayProducts( { navigation } ) {
                       setModalVisible(true);
                     }
                   }
-                  onPress={ () => {                      
-                      timesPressed++;  
-                      addNewItemToOrder(item, timesPressed);                               
+                  onPress={ () => {   
+                      if (item.quantity != 0) {                   
+                        timesPressed++;  
+                        addNewItemToOrder(item, timesPressed); 
+                      }                              
                     }
                   }
               >

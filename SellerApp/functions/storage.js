@@ -1,5 +1,9 @@
-import {AsyncStorage} from 'react-native';
+import {AsyncStorage, Alert} from 'react-native';
 
+export const checkIfAlreadyLoggedIn = async (navigation) => {
+  const TOKEN = await AsyncStorage.getItem('token');
+  if (TOKEN != undefined) navigation.navigate('DisplayProducts');
+}
 export const createOrders = async () => {
     try {
         const orders = [];
@@ -7,11 +11,6 @@ export const createOrders = async () => {
     } catch (error) {
         console.log("Error saving orders");
     }
-}
-
-export const checkIfAlreadyLoggedIn = async (navigation) => {
-  const TOKEN = await AsyncStorage.getItem('token');
-  if (TOKEN != undefined) navigation.navigate('DisplayProducts');
 }
 
 export const checkIfOrdersEmpty = async () => {
@@ -39,57 +38,67 @@ export const saveNewOrder = async (newOrder) => {
       // spasimo novi niz narudžbi
       await AsyncStorage.setItem('orders', JSON.stringify(ordersRec) )
         .then( ()=>{
-          console.log('New order saved succesfully');
-          //console.log(ordersRec);
+          Alert.alert ('Success', 'New order saved successfully!',[{
+              text: 'Okay'
+          }]);
         } )
         .catch( ()=>{
-        console.log('Error saving new order');
+            Alert.alert ('Error', 'Error saving new order!',[{
+              text: 'Okay'
+            }]);
         } )
     } catch (error) {
-      console.log("Error saving new order");
+      Alert.alert ('Error', 'Error saving new order!',[{
+        text: 'Okay'
+      }]);
     }    
-}    
+}     
 
 export const deleteOrder = async (order) => {
- //ne treba obrisat usluzenu narudzbu
-  if( order.Served == true ){
-    Alert.alert ('Error', 'You cannot delete served order!',[{
+  //ne treba obrisat usluzenu narudzbu
+   if( order.served == true ){
+     Alert.alert ('Error', 'You cannot delete served order!',[{
+       text: 'Okay'
+      }])
+    return;
+   }
+   else {
+     let indexOfOrder=0;
+     try {
+       // uzmemo postojeće orders iz AsyncStorage
+       const existingOrders = await AsyncStorage.getItem('orders');
+       let ordersRec = JSON.parse(existingOrders);
+      //pretrazimo da nadjemo nasu narudzbu
+       for(let i=0; i<ordersRec.length; i++){
+         indexOfOrder=i;
+         if(ordersRec[i].products.length != order.products.length) continue;
+         if(ordersRec[i].tableNr != order.tableNr) continue;
+         for(var j=0;j<ordersRec[i].products.length; j++){
+             if(ordersRec[i].products[j].id!=order.products[j].id) break;
+             if(ordersRec[i].products[j].times!=order.products[j].times) break;
+         }
+         if(j==ordersRec[i].products.length){
+           //znaci da je nasao istu narudzbu i da je treba obrisati
+           ordersRec.splice(indexOfOrder, 1);
+           break;
+         }
+       }
+       // spasimo novi niz narudžbi
+      await AsyncStorage.setItem('orders', JSON.stringify(ordersRec) )
+         .then( ()=>{
+          Alert.alert ('Success', 'Order deleted successfully!',[{
+            text: 'Okay'
+        }]);
+         } )
+         .catch( ()=>{
+          Alert.alert ('Error', 'Error deleting order!',[{
+            text: 'Okay'
+          }]);
+         } )
+     } catch (error) {
+      Alert.alert ('Error', 'Error deleting order!',[{
       text: 'Okay'
-     }])
-   return;
-  }
-  else {
-    let indexOfOrder=0;
-    try {
-      // uzmemo postojeće orders iz AsyncStorage
-      const existingOrders = await AsyncStorage.getItem('orders');
-      let ordersRec = JSON.parse(existingOrders);
-     //pretrazimo da nadjemo nasu narudzbu
-      for(let i=0; i<ordersRec.length; i++){
-        indexOfOrder=i;
-        if(ordersRec[i].products.length != order.products.length) continue;
-        if(ordersRec[i].tableNr != order.tableNr) continue;
-        for(var j=0;j<ordersRec[i].products.length; j++){
-            if(ordersRec[i].products[j].id!=order.products[j].id) break;
-            if(ordersRec[i].products[j].times!=order.products[j].times) break;
-        }
-        if(j==ordersRec[i].products.length){
-          //znaci da je nasao istu narudzbu i da je treba obrisati
-          ordersRec.splice(indexOfOrder, 1);
-          break;
-        }
-      }
-      // spasimo novi niz narudžbi
-     await AsyncStorage.setItem('orders', JSON.stringify(ordersRec) )
-        .then( ()=>{
-          console.log('Order deleted succesfully');
-          console.log(ordersRec);
-        } )
-        .catch( ()=>{
-        console.log('Error deleting order');
-        } )
-    } catch (error) {
-      console.log("Error deleting order");
-    } 
-  }  
-}     
+    }]);
+     } 
+   }  
+ }     

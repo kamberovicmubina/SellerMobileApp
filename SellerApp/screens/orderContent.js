@@ -62,7 +62,7 @@ export default function OrderContent ({navigation}) {
             )
           }
           )}
-        </ScrollView>
+        </ScrollView> 
         <View>
             <TouchableOpacity
                   style={styles.deleteBtn}
@@ -74,7 +74,6 @@ export default function OrderContent ({navigation}) {
                   <Text style={styles.sumbitText}>Delete order</Text>
             </TouchableOpacity>
         </View>
-
       </ImageBackground>
     );
 }
