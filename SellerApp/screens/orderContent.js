@@ -30,15 +30,16 @@ export default function OrderContent({ navigation }) {
 
   const calculateTotalPrice = async (receiptItems) => {
     var toPay = 0;
-
+    receiptItems = [];
     if (receiptItems != null) products.map((item) => {
       toPay = toPay + item.times * item.price;
       receiptItems.push({ id: item.id, quantity: item.times });
+      backupObject = { receiptItems };
     });
     else products.map((item) => {
       toPay = toPay + item.times * item.price;
     });
-
+    backupObject = { receiptItems };
     await setPrice(Math.round(toPay * 100) / 100);
   }
 
@@ -51,11 +52,11 @@ export default function OrderContent({ navigation }) {
   },[products]);
 
   useEffect(() => {
-    receiptItems = [];
-    backupObject = {};
+    //receiptItems = [];
+    //backupObject = {};
     calculateTotalPrice(receiptItems);
     /* backupObject je objekat koji sadrzi niz reciptItems, jer ga kao takvog saljemo serveru */
-    backupObject = { receiptItems };
+    //backupObject = { receiptItems };
   }, [price]);
 
   const updateProducts = async (newProducts) => {
