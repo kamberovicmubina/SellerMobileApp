@@ -27,7 +27,7 @@ export default function OrderContent({ navigation }) {
 
   var receiptItems = [];
   var backupObject = {};
-
+  var message = '';
   const calculateTotalPrice = async (receiptItems) => {
     var toPay = 0;
     receiptItems = [];
@@ -39,7 +39,7 @@ export default function OrderContent({ navigation }) {
     else products.map((item) => {
       toPay = toPay + item.times * item.price;
     });
-    backupObject = { receiptItems };
+    backupObject = {message, receiptItems };
     await setPrice(Math.round(toPay * 100) / 100);
   }
 
