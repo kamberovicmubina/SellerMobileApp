@@ -39,7 +39,6 @@ const OrderStack = createStackNavigator (screens, {
     defaultNavigationOptions: {
         headerStyle: { backgroundColor: '#05132e', height: 80, },
         headerTintColor: '#fff',
-        //componen: DisplayOrders
    }
 });
 

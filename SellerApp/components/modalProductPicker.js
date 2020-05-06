@@ -19,14 +19,12 @@ export default function ModalProductPicker({ modalVisible, setModalVisible, setP
 
     const addNewProduct = (item) => {
         item.times = 0;
-
         setProducts((prevProducts) => {
             return [
                 ...prevProducts,
                 item
             ];
         });
-
         invokeUpdate();
 
         setForbiddenProducts((prevForbiddenProducts) => {
@@ -41,7 +39,6 @@ export default function ModalProductPicker({ modalVisible, setModalVisible, setP
             setModalVisible(!modalVisible);
         }
     }
-
     const getAllProducts = async () => {
         var TOKEN = await AsyncStorage.getItem('token');
         fetch("https://cash-register-server-si.herokuapp.com/api/products", {

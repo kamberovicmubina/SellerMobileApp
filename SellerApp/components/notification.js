@@ -18,15 +18,15 @@ export default function Notification() {
         sendPushNotification();
     }, [notificationMessage]);
 
-    const handlePushNotification = notification => {
+    /*const handlePushNotification = notification => {
         //ovdje se moze raditi bilo sta sa dobijenom push notifikacijom
 
         //console.log(notification.data); // podaci koji su proslijedjeni uz notifikaciju
 
         Vibration.vibrate();
-    };
+    };*/
 
-    const sendPushNotification = async () => {
+   /* const sendPushNotification = async () => {
         if (!notificationMessage.includes("Guest is calling you to the table number")) return;
 
         const expoPushToken = await AsyncStorage.getItem('expoPushToken');
@@ -51,7 +51,7 @@ export default function Notification() {
         });
 
         setNotificationMessage('');
-    }
+    }*/
 
     const notifyTheWaiter = async () => {
         if (typeof localNotifications === 'undefined' || localNotifications == null || localNotifications.length === 0) return;
@@ -64,7 +64,7 @@ export default function Notification() {
         await AsyncStorage.setItem('lastNotificationID', localNotifications[localNotifications.length - 1].id.toString());
     }
 
-    let setTimeoutID = setTimeout(async () => {
+  /*  let setTimeoutID = setTimeout(async () => {
         var token = await AsyncStorage.getItem('token');
         var lastNotificationID = await AsyncStorage.getItem('lastNotificationID');
 
@@ -79,7 +79,7 @@ export default function Notification() {
             }).done();
         }
         else clearTimeout(setTimeoutID);
-    }, 30000);
+    }, 30000);*/
 
     return (
         null

@@ -14,14 +14,6 @@ export default function AddNewOrder({ navigation }) {
     const order = param.newOrder; // objekat koji sadrzi kao atribute: products-niz proizvoda,tableNr i served
     order.served = false; // ako se ne unese napomena znaci da nije usluzeno
 
-    const isServed = (orderNote) => {
-        if ((orderNote.includes('served') || orderNote.includes('usluzena') || orderNote.includes('uslužena') || orderNote.includes('usluženo') || orderNote.includes('usluzeno')) &&
-            !(orderNote.includes('not served') || orderNote.includes('neusluzena') || orderNote.includes('neuslužena') || orderNote.includes('neusluženo') || orderNote.includes('neusluzeno'))) {
-            return true;
-        }
-        return false;
-    }
-
     const checkTableNumber = (number) => {
 
         if (number != null) {

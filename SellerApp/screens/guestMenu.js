@@ -11,6 +11,7 @@ import { WingBlank } from '@ant-design/react-native';
 import { Card } from 'react-native-paper';
 import { postGuestOrder, guestLogIn } from '../functions/storage';
 import NumericInput from 'react-native-numeric-input';
+
 const getFonts = () => {
   return Font.loadAsync({
     'courgette-regular': require('../assets/fonts/Courgette-Regular.ttf'),
@@ -150,7 +151,7 @@ export default function GuestMenu({ navigation }) {
   };
 
   useEffect(() => {
-    guestLogIn();
+   // guestLogIn();
     getProducts();
     tableNrCheck();
   }, [])

@@ -38,8 +38,10 @@ export default function DisplayTables({ navigation }) {
             empty:true
         };
         while(numberOfElementsInLastRow != columnNumber && numberOfElementsInLastRow != 0) {
-            tableMap.push(empty);
-            numberOfElementsInLastRow = numberOfElementsInLastRow + 1;
+            if (tableMap !== undefined) {
+                tableMap.push(empty);
+                numberOfElementsInLastRow = numberOfElementsInLastRow + 1;
+            }            
         }
         //u slucaju potrebe za posebnim rasporedom stolova
         /*tables.sort(function(t1, t2) {

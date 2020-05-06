@@ -45,6 +45,7 @@ export default StyleSheet.create({
     backgroundColor:'#05132e',
     borderRadius:10,
     borderWidth: 1,
+    marginBottom: 10,
   },
   loginText:{
     color:'#fff',

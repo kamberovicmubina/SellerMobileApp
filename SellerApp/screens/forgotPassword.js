@@ -186,12 +186,15 @@ export default function ForgotPassword ({navigation}) {
         <View style={userMail}>
             <TextInput style={input} editable={editableTextInput} placeholder="E-mail or username" onChangeText={text => setEmail(text)}></TextInput>
         </View>
-        <TouchableOpacity
-                    style={loginScreenButton}
-                    underlayColor='#fff'
-                    onPress={sendCode}>
-                    <Text style={loginText} >Send code</Text>
-        </TouchableOpacity>
+        <View style={loginScreenButton}>
+          <TouchableOpacity
+                      //style={loginScreenButton}
+                      underlayColor='#fff'
+                      onPress={sendCode}>
+                      <Text style={loginText} >Send code!</Text>
+          </TouchableOpacity>
+        </View>
+        
         <View style={userMail}>
             { !hidden ? (<TextInput style={input} placeholder="Enter code" onChangeText={text => setSafetyCode(text)}></TextInput>) : null}
         </View>

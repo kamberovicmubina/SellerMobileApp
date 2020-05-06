@@ -4,6 +4,8 @@ export default StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
+      justifyContent: 'center',
+      alignContent: 'center',
     },
     heading: {
         fontSize: 30,
@@ -22,19 +24,24 @@ export default StyleSheet.create({
         color: 'white'
     },
     userMail: {
+        //marginLeft:13,
         justifyContent:'center',
         flexDirection:'row',
         height: 40,
       }, 
       input: {
+        //marginLeft: 20,
+        //marginRight: 20,
         backgroundColor:'#fff',
         borderRadius:5,
         //marginBottom:30,
         borderWidth:1.5,
         borderColor: 'darkblue',
-        width: '90%',
+        //width:300,
+        width: '80%',
       },
       loginScreenButton: {
+        //marginLeft:63,
         justifyContent: 'center',
         flexDirection:'row',
         marginTop:10,
@@ -43,8 +50,10 @@ export default StyleSheet.create({
         backgroundColor:'#05132e',
         borderRadius:10,
         borderWidth: 1,
-        marginBottom: 30,
-        marginHorizontal: 20,
+//        width:300,
+       // width: '80%',
+       marginHorizontal: 30,
+        marginBottom: 30
       },
       loginText:{
         color:'#fff',

@@ -22,7 +22,6 @@ export default function DisplayOrders({ navigation }) {
       return ("Table: " + num);
     else return "Shopping"
   }
-
   const setPrice = (singleOrder) => {
     var ammount = 0;
     {

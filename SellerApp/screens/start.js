@@ -29,7 +29,7 @@ export default function Start ({ navigation }) {
                     </TouchableOpacity>
                 </View>
                 <View style={{flex: 1, width: '100%', justifyContent: 'center', alignItems: 'center'}}>
-                    <Text style={{color: 'black', fontFamily: 'courgette-regular', fontSize: 50}}>The shopping that will make you happy!</Text>
+                    <Text style={{color: 'black', fontFamily: 'courgette-regular', fontSize: 50,}}>The shopping that will make you happy!</Text>
                 </View>
                 
                 <View style={{flex: 1, width: '80%'}}>
