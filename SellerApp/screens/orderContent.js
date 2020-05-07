@@ -52,6 +52,13 @@ export default function OrderContent({ navigation }) {
   }, []);
 
   useEffect(() => {
+    if(products.length === 0 && !navigation.state.params.data.item.served) {
+      deleteUnservedOrder(navigation.state.params.data.item);
+      navigation.navigate('DisplayOrders');
+    }
+  }, [products])
+
+  useEffect(() => {
     calculateTotalPrice(receiptItems);
     /* backupObject je objekat koji sadrzi niz reciptItems, jer ga kao takvog saljemo serveru */
     //backupObject = { receiptItems };
@@ -62,16 +69,23 @@ export default function OrderContent({ navigation }) {
   }
 
   const editButton = () => {
-    setEditButtonVisible(!editButtonVisible);
-    setEditInputVisible(!editInputVisible);
-    setAddButtonDisabled(!addButtonDisabled);
+    if(!navigation.state.params.data.item.served) {
+      setEditButtonVisible(!editButtonVisible);
+      setEditInputVisible(!editInputVisible);
+      setAddButtonDisabled(!addButtonDisabled);
 
-    let newProductsQuantity = [];
-    products.map(product => {
-      newProductsQuantity.push({ id: product.id, quantity: product.times });
-    });
+      let newProductsQuantity = [];
+      products.map(product => {
+        newProductsQuantity.push({ id: product.id, quantity: product.times });
+      });
 
-    setPrevProductsQuantity(newProductsQuantity);
+      setPrevProductsQuantity(newProductsQuantity);
+    } else {
+      Alert.alert('Error', 'You cannot edit a served order!', [{
+        text: 'Okay'
+      }])
+    }
+    
   }
 
   const checkButton = () => {

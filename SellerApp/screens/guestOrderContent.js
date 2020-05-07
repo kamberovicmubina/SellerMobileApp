@@ -51,6 +51,14 @@ export default function GuestOrderContent({ navigation }) {
   }, []);
 
   useEffect(() => {
+    if(products.length === 0 && !navigation.state.params.data.item.served) {
+      console.log("NEma proizvdoa");
+      deleteGuestOrder(navigation.state.params.data.item.id);
+      navigation.navigate('DisplayOrders');
+    }
+  }, [products])
+
+  useEffect(() => {
     calculateTotalPrice(receiptItems);
   }, [price]);
 
@@ -59,16 +67,22 @@ export default function GuestOrderContent({ navigation }) {
   }
 
   const editButton = () => {
-    setEditButtonVisible(!editButtonVisible);
-    setEditInputVisible(!editInputVisible);
-    setAddButtonDisabled(!addButtonDisabled);
+    if(!navigation.state.params.data.item.served) {
+      setEditButtonVisible(!editButtonVisible);
+      setEditInputVisible(!editInputVisible);
+      setAddButtonDisabled(!addButtonDisabled);
 
-    let newProductsQuantity = [];
-    products.map(product => {
-      newProductsQuantity.push({ id: product.id, quantity: product.times });
-    });
+      let newProductsQuantity = [];
+      products.map(product => {
+        newProductsQuantity.push({ id: product.id, quantity: product.times });
+      });
 
-    setPrevProductsQuantity(newProductsQuantity);
+      setPrevProductsQuantity(newProductsQuantity);
+    } else {
+      Alert.alert('Error', 'You cannot edit a served order!', [{
+        text: 'Okay'
+      }])
+    }
   }
 
   const checkButton = () => {
