@@ -192,7 +192,7 @@ export const postOrder = async (navigation, narudzba, backupObject) => {
         //removeCurrentOrder(brojStola);
       deleteOrder(narudzba);
       console.log(odgovor);
-      Alert.alert('Submited!', 'Order was successfully submitted.', [
+      Alert.alert('Submitted!', 'Order was successfully submitted.', [
         {
           text: 'OK'
         }])
@@ -201,7 +201,7 @@ export const postOrder = async (navigation, narudzba, backupObject) => {
       }
       else
       {
-        Alert.alert('Error', 'Error submiting the order, please try again!', [
+        Alert.alert('Error', 'Error submitting the order, please try again!', [
           {
             text: 'OK'
           }])
