@@ -185,15 +185,27 @@ export const postOrder = async (navigation, narudzba, backupObject) => {
   })
     .then((response) => response.text())
     .then((res) => {
-      //removeCurrentOrder(brojStola);
+      const odgovor = JSON.parse(res);
+      console.log(odgovor.message);
+      if(odgovor.message == "Order is successfully saved!")
+      {
+        //removeCurrentOrder(brojStola);
       deleteOrder(narudzba);
-      console.log(res);
+      console.log(odgovor);
       Alert.alert('Submited!', 'Order was successfully submitted.', [
         {
           text: 'OK'
         }])
       navigation.navigate('DisplayOrders');
       //console.log('table broj: ', brojStola);
+      }
+      else
+      {
+        Alert.alert('Error', 'Error submiting the order, please try again!', [
+          {
+            text: 'OK'
+          }])
+      }
     }).catch((error) => console.error(error))
     .done();
 }
